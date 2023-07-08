@@ -4,27 +4,34 @@ import (
 	"fmt"
 )
 
-const kelantan = "Kelantenese"
-const japan = "Japanese"
-const malayHelloPrefix = "Assalam!"
-const kelantanHelloPrefix = "Guano "
-const japaneseHelloPrefix = "Konichiwa, "
+const (
+	kelantan            = "Kelantenese"
+	japan               = "Japanese"
+	malayHelloPrefix    = "Assalam, "
+	kelantanHelloPrefix = "Guano, "
+	japaneseHelloPrefix = "Konichiwa, "
+	defaultPrefix       = "Assalam!"
+)
 
 func Hello(name string, lang string) string {
-	if lang == kelantan {
-		return kelantanHelloPrefix + name + "? Bereh?"
-	}
-	if lang == japan {
-		return japaneseHelloPrefix + name
-	}
 
 	if name == "" {
-		name = " Apa Khabar!"
-	} else {
-		name = " Apa Khabar, " + name
+		return defaultPrefix
 	}
 
-	return malayHelloPrefix + name
+	return greetingPrefix(lang) + name
+}
+
+func greetingPrefix(lang string) (prefix string) {
+	switch lang {
+	case kelantan:
+		prefix = kelantanHelloPrefix
+	case japan:
+		prefix = japaneseHelloPrefix
+	default:
+		prefix = malayHelloPrefix
+	}
+	return
 }
 
 func main() {
