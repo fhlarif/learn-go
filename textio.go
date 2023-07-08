@@ -4,10 +4,17 @@ import (
 	"fmt"
 )
 
-func main() {
-	fmt.Println(Hello("world"))
-}
+const malayHelloPrefix = "Assalam!"
 
 func Hello(name string) string {
-	return "Hello," + name
+	if name == "" {
+		name = " Apa Khabar!"
+	} else {
+		name = " Apa Khabar, " + name
+	}
+	return malayHelloPrefix + name
+}
+
+func main() {
+	fmt.Println(Hello("Fathul"))
 }
